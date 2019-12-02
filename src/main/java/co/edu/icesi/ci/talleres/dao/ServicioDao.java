@@ -10,11 +10,13 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;
 
 import co.edu.icesi.ci.talleres.model.Tmio1Servicio;
+import co.edu.icesi.ci.talleres.model.Tmio1ServicioPK;
 
 @Repository
 @Scope("singleton")
 @Transactional
-public class IConsultServicesIn implements IConsultServices{
+public class ServicioDao implements IServicioDao{
+
 	@PersistenceContext
 	private EntityManager entityManager;
 	
@@ -45,5 +47,8 @@ public class IConsultServicesIn implements IConsultServices{
 		String jpql= "Select a from Tmio1Servicio a WHERE a.id.idBus = '"+ idBus+"' AND a.id.idRuta = '"+ idRuta+"' AND a.id.cedulaConductor= '"+ cedula+"' AND a.id.fechaInicio='"+fechaInicio+"' AND a.id.fechaFin='"+fechaFin+"'";
 		return (Tmio1Servicio)entityManager.createQuery(jpql).getSingleResult();
 	}
+
+	
+	
 	
 }

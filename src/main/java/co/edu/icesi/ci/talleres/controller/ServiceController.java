@@ -39,24 +39,24 @@ public class ServiceController{
 		return "services/index";
 	}
 	
-	@GetMapping("/services/add")
+	@GetMapping("/services/add1")
 	public String addService(Model model){
 		model.addAttribute("buses", service.findAllBuses());
 		model.addAttribute("routes",service.findAllRoutes());
 		model.addAttribute("drivers",service.findAllDrivers());
 		model.addAttribute("service", new Tmio1ServicioPK());
 		
-		return "/services/addservice";
+		return "/services/add-service2";
 	}
 	
-	@PostMapping("/services/add1")
+	@PostMapping("/services/add2")
 	public String saveService(@ModelAttribute("service") @Valid Tmio1ServicioPK servicio, BindingResult bindingResult, Model model){
 		if(bindingResult.hasErrors()) {
 			model.addAttribute("buses", service.findAllBuses());
 			model.addAttribute("routes",service.findAllRoutes());
 			model.addAttribute("drivers",service.findAllDrivers());
 			model.addAttribute("service", new Tmio1ServicioPK());
-			return "/services/addservice";
+			return "/services/add-service2";
 		}
 		else {
 			service.saveService(servicio);
@@ -75,45 +75,13 @@ public class ServiceController{
 		model.addAttribute("routes",service.findAllRoutes());
 		model.addAttribute("drivers",service.findAllDrivers());
 		model.addAttribute("path",id);
-		return "services/editservice";
+		return "services/edit-service2";
 	}
 
-	
-	
-	@PostMapping("/services/edit2/{id}")
-	public String updateService(@PathVariable("id") String id,@ModelAttribute("service") @Valid Tmio1ServicioPK servicioNew,BindingResult bindingResult, Model model,
-			@RequestParam(value = "action", required = true) String action) {
-		if (action != null && !action.equals("Cancel")) {
-			if (bindingResult.hasErrors()) {
-				model.addAttribute("buses", service.findAllBuses());
-				model.addAttribute("routes",service.findAllRoutes());
-				model.addAttribute("drivers",service.findAllDrivers());
-				return "/services/edit/";
-			}
-			
-			Optional<Tmio1Servicio> serv = service.findById(service.findPKId(id).get());
-			if (serv == null)
-				throw new IllegalArgumentException("Invalid service Id");
-			
-			serv.get().setTmio1Conductore(service.findByDriverId(servicioNew.getCedulaConductor()).get());
-			serv.get().setTmio1Bus(service.findByBusId(servicioNew.getIdBus()).get());
-			serv.get().setTmio1Ruta(service.findByRouteId(servicioNew.getIdRuta()).get());
-			serv.get().getId().setIdBus(servicioNew.getIdBus());
-			serv.get().getId().setCedulaConductor(servicioNew.getCedulaConductor());
-			serv.get().getId().setIdRuta(servicioNew.getIdRuta());
-			serv.get().getId().setFechaFin(servicioNew.getFechaFin());
-			serv.get().getId().setFechaInicio(servicioNew.getFechaInicio());
-			
-			service.saveService2(serv.get());
-		}
-		return "redirect:/services/";
-	}
-	
-	
 	@GetMapping("/services/filtrar")
 	public String showFilterForm(Model model) {
 		model.addAttribute("service", new Tmio1ServicioPK());
-		return "services/filter";
+		return "services/Filtrar";
 	}
 
 	
@@ -124,13 +92,12 @@ public class ServiceController{
 		if (action != null && !action.equals("Cancel")) {
 			if (bindingResult.hasErrors()) {
 				model.addAttribute("service", new Tmio1ServicioPK());
-				return "/services/filter/";
+				return "/services/Filtrar/";
 			}
 			model.addAttribute("services", service.filtrar(servicioNew.getFechaInicio()));
 		}
 		return "services/index";
 	}
 	
-
 	
 }

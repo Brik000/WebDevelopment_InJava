@@ -17,12 +17,12 @@ import co.edu.icesi.ci.talleres.services.ConductorService;
 
 
 @Controller
-public class ConductorsController {
+public class ConductoresController {
 
 	ConductorService conductorService;
 	
 	@Autowired
-	public ConductorsController(ConductorService conductorService) {
+	public ConductoresController(ConductorService conductorService) {
 		this.conductorService = conductorService;
 		;
 	}
@@ -33,17 +33,17 @@ public class ConductorsController {
 		return "conductores/index";
 	}
 	
-	@GetMapping("/conductores/add")
+	@GetMapping("/conductores/add1")
 	public String addConductor(Model model) {
 		model.addAttribute("driver", new Tmio1Conductore());
-		return "/conductores/addconductor";
+		return "/conductores/add-conductor";
 	}
 	
 	@PostMapping("/conductores/add1")
 	public String saveConductor(@ModelAttribute("driver") @Valid Tmio1Conductore driver, BindingResult bindingResult,@RequestParam(value = "action", required = true) String action , Model model) {
 		if (!action.equals("Cancel")) {
 		if (bindingResult.hasErrors()) {
-				return "/conductores/addconductor";
+				return "/conductores/add-conductor";
 			} else {
 				try {
 					conductorService.saveConductor(driver);

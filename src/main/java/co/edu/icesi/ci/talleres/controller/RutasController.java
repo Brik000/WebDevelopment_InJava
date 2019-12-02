@@ -40,18 +40,18 @@ public class RutasController {
 	}
 	
 	
-	@GetMapping("/rutas/add")
+	@GetMapping("/rutas/add1")
 	public String addRutas1(Model model) {
 		model.addAttribute("Tmio1Ruta", new Tmio1Ruta());
-		return "rutas/addruta";
+		return "rutas/add-ruta2";
 	}
 	
-	@PostMapping("/rutas/add1")
+	@PostMapping("/rutas/add2")
 	public String saveRuta2(@ModelAttribute("Tmio1Ruta")@Valid Tmio1Ruta ruta, BindingResult bindingResult,
 			@RequestParam(value = "action", required = true) String action, Model model) {
 		if (!action.equals("Cancel"))
 			if (bindingResult.hasErrors()) {
-				return "rutas/addruta";
+				return "rutas/add-ruta2";
 			} else {
 				rutaService.saveRuta(ruta);
 			}

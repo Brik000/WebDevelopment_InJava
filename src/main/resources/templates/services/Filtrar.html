@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
-<title>Filter system</title>
+<title>Add service to system</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -50,7 +50,7 @@
                         <input type = "hidden" id = "cedulaConductor">
                         <input type = "hidden" id = "fechaFin">
 					<div class="form-group col-md-6">	
-						<label for = "fechaInicio">fecha de inicio con la que desea filtrar el servicio</label>
+						<label for = "fechaInicio">Indique la fecha de inicio con la que desea filtrar </label>
 						<input type = "date" id = "fechaInicio" th:field="*{fechaInicio}">
 						<span th:if="${#fields.hasErrors('fechaInicio')}" th:errors="*{fechaInicio}" class="text-danger"></span>
 					</div>

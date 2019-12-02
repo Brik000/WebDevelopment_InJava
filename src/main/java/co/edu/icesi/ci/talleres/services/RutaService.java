@@ -2,25 +2,20 @@ package co.edu.icesi.ci.talleres.services;
 
 import java.util.Optional;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import co.edu.icesi.ci.talleres.dao.IConsultRutasIn;
 import co.edu.icesi.ci.talleres.model.Tmio1Conductore;
 import co.edu.icesi.ci.talleres.model.Tmio1Ruta;
 import co.edu.icesi.ci.talleres.repositories.RutasRepository;
 
 @Service
 public class RutaService implements RutaServiceIn{
-	//private RutasRepository rutaRepository;
-	private IConsultRutasIn rutaRepository;
+	private RutasRepository rutaRepository;
 	@Autowired
-	public RutaService(IConsultRutasIn rutaRepository) {
+	public RutaService(RutasRepository rutaRepository) {
 		this.rutaRepository= rutaRepository;
 	}
-	@Transactional
 	@Override
 	public void saveRuta(Tmio1Ruta ruta) {
 		rutaRepository.save(ruta);
@@ -36,9 +31,9 @@ public class RutaService implements RutaServiceIn{
 	}
 	@Override
 	public Optional<Tmio1Ruta> findById(int id) throws Exception {
-		return Optional.of(rutaRepository.findbyId(id).get(0));
+		return rutaRepository.findById(id);
 	}
-	public void setRepository(IConsultRutasIn rutaRepository) {
+	public void setRepository(RutasRepository rutaRepository) {
 		this.rutaRepository= rutaRepository;
 	}
 	

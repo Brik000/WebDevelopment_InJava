@@ -1,19 +1,13 @@
 package co.edu.icesi.ci.talleres.services;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Optional;
-
-import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import co.edu.icesi.ci.talleres.dao.IConsultConductoresIn;
-import co.edu.icesi.ci.talleres.dao.IConsultServicesIn;
 import co.edu.icesi.ci.talleres.model.Tmio1Bus;
 import co.edu.icesi.ci.talleres.model.Tmio1Conductore;
 import co.edu.icesi.ci.talleres.model.Tmio1Ruta;
@@ -27,10 +21,10 @@ import co.edu.icesi.ci.talleres.repositories.ServiciosRepository;
 @Service
 public class ServiceService implements ServiceServiceIn{
 	@Autowired
-	private IConsultServicesIn serviceRepository;
+	private ServiciosRepository serviceRepository;
 	
 	@Autowired
-	private IConsultConductoresIn driverRepos;
+	private ConductoresRepository driverRepos;
 	@Autowired
 	private RutasRepository routeRepos;
 	@Autowired
@@ -38,11 +32,10 @@ public class ServiceService implements ServiceServiceIn{
 	
 	
 	@Autowired
-	public ServiceService(IConsultServicesIn serviciosRepository) {
+	public ServiceService(ServiciosRepository serviciosRepository) {
 		this.serviceRepository= serviciosRepository;
 	}
 
-	@Transactional
 	@Override
 	public void saveService(Tmio1ServicioPK service) {
 		try {
@@ -67,12 +60,12 @@ public class ServiceService implements ServiceServiceIn{
 	@Override
 	public void validarService(Tmio1Servicio service) throws Exception {
 	}
-	public void setRepository(IConsultServicesIn serviceRepository) {
+	public void setRepository(ServiciosRepository serviceRepository) {
 		this.serviceRepository= serviceRepository;
 	}
 	@Override
 	public Optional<Tmio1Servicio> findById(Tmio1ServicioPK id) {
-		return Optional.of(serviceRepository.findbyID(id.getCedulaConductor(), id.getIdBus(), id.getIdRuta(), id.getFechaInicio().toString(), id.getFechaFin().toString()));
+		return serviceRepository.findById(id);
 	}
 	public Iterable<Tmio1Bus> findAllBuses() {
 		return busRepos.findAll();
@@ -94,7 +87,7 @@ public class ServiceService implements ServiceServiceIn{
 	}
 
 	public Optional<Tmio1Conductore> findByDriverId(String driverId) {
-		return Optional.of(driverRepos.findById(driverId));
+		return driverRepos.findById(driverId);
 	}
 
 	public Optional<Tmio1Ruta> findByRouteId(Integer routeId) {
@@ -112,25 +105,27 @@ public class ServiceService implements ServiceServiceIn{
 		}
 		return null;
 	}
-
 	public Iterable<Tmio1Servicio> filtrar(LocalDate fechaInicio) {
 		Iterable<Tmio1Servicio> filt= this.findAllServices();
-	    int counter = 0;
+	    int contador = 0;
 	    for (Object i : filt) {
-	        counter++;
+	    	contador++;
 	    }
-		Tmio1Servicio lista[]= new Tmio1Servicio[counter];
+		Tmio1Servicio lista[]= new Tmio1Servicio[contador];
 		filt= this.findAllServices();
-		counter= 0;
+		contador= 0;
 	    for (Tmio1Servicio i : filt) {
 	    	if(i.getId().getFechaInicio().compareTo(fechaInicio)==0) {
-	    		lista[counter]= i;
-	    		counter++;
+	    		lista[contador]= i;
+	    		contador++;
 	    	}
 	    }
-	    if(counter==0) {
+	    if(contador==0) {
 	    	return null;
 	    }
+	    
+	    
+	    
 		Iterable<Tmio1Servicio> nuevo= Arrays.asList(lista);
 		return nuevo;
 	}

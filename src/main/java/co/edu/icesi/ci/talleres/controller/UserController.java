@@ -41,20 +41,20 @@ public class UserController {
 		return "users/index";
 	}
 	
-	@GetMapping("/users/add")
+	@GetMapping("/users/add1")
 	public String addUser1(Model model) {
 		model.addAttribute("userApp", new UserApp());
 		model.addAttribute("types", userService.getTypes());
-		return "users/adduser";
+		return "users/add-user2";
 	}
 	
-	@PostMapping("/users/add1")
+	@PostMapping("/users/add2")
 	public String saveUser2(@Validated(Step1.class) UserApp user, BindingResult bindingResult,
 			@RequestParam(value = "action", required = true) String action, Model model) {
 		if (!action.equals("Cancel"))
 			if (bindingResult.hasErrors()) {
 				model.addAttribute("types", userService.getTypes());
-				return "users/adduser";
+				return "users/add-user2";
 			} else {
 				userService.save(user);
 			}

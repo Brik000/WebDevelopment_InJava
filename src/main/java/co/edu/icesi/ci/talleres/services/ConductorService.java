@@ -2,27 +2,24 @@ package co.edu.icesi.ci.talleres.services;
 
 import java.util.Optional;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import co.edu.icesi.ci.talleres.dao.IConsultConductoresIn;
+import co.edu.icesi.ci.talleres.model.Tmio1Bus;
 import co.edu.icesi.ci.talleres.model.Tmio1Conductore;
+import co.edu.icesi.ci.talleres.repositories.ConductoresRepository;
 
 @Service
 public class ConductorService implements ConductorServiceIn{
-	@Autowired
-	//private ConductoresRepository conductorRepository;
-	private IConsultConductoresIn conductorRepository;
+
+	private ConductoresRepository conductorRepository;
 	
 	@Autowired
-	public ConductorService(IConsultConductoresIn conductorRepository) {
+	public ConductorService(ConductoresRepository conductorRepository) {
 		this.conductorRepository= conductorRepository;
 	}
 	
 	@Override
-	@Transactional
 	public void saveConductor(Tmio1Conductore conductor) {
 		conductorRepository.save(conductor);
 	}
@@ -35,9 +32,9 @@ public class ConductorService implements ConductorServiceIn{
 	}
 	@Override
 	public Optional<Tmio1Conductore> findByCedula(String cedula) throws Exception {
-		return Optional.of(conductorRepository.findById(cedula));
+		return conductorRepository.findById(cedula);
 	}
-	public void setRepository(IConsultConductoresIn conductoRepository) {
+	public void setRepository(ConductoresRepository conductoRepository) {
 		this.conductorRepository= conductoRepository;
 	}
 	public Iterable<Tmio1Conductore> findAll() {

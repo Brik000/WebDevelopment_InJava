@@ -1,5 +1,6 @@
 package co.edu.icesi.ci.talleres.dao;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -12,30 +13,41 @@ import org.springframework.stereotype.Repository;
 import co.edu.icesi.ci.talleres.model.Tmio1Conductore;
 
 @Repository
-@Scope("singleton")
 @Transactional
-public class IConsultConductoresIn implements IConsultConductores{
+@Scope("singleton")
+public class ConductorDao implements IConductorDao{
+	
 	@PersistenceContext
 	private EntityManager entityManager;
 
+	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Tmio1Conductore> findbyNombre(String nombre) {
+	public List<Tmio1Conductore>  findByNombre(String nombre){
 		String jpql= "Select a from Tmio1Conductore a WHERE a.nombre = '"+ nombre+"'";
 		return entityManager.createQuery(jpql).getResultList();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Tmio1Conductore> findbyApellidos(String apellidos) {
-		String jpql= "Select a from Tmio1Conductore a WHERE a.apellidos = '"+ apellidos+"'";
+	public List<Tmio1Conductore>  findByApellido(String apellido) {
+		String jpql= "Select a from Tmio1Conductore a WHERE a.apellidos = '"+ apellido+"'";
 		return entityManager.createQuery(jpql).getResultList();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Tmio1Conductore> findAll() {
-		String jpql= "Select a from Tmio1Conductore a";
+		String jpql= "Select a from Tmio1Conductore a ";
+		return entityManager.createQuery(jpql).getResultList();
+	}
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Tmio1Conductore> consultaF(String fechaConsulta) {
+		String jpql = "SELECT pp FROM Tmio1Servicio "
+				+ "d INNER JOIN dd.tmio1Conductore pp WHERE dd.id.fechaInicio <= '" + fechaConsulta + "' "
+						+ "AND dd.id.fechaFin >= '" + fechaConsulta + "'ORDER BY dd.id.fechaFin desc";
+		
 		return entityManager.createQuery(jpql).getResultList();
 	}
 
@@ -54,18 +66,15 @@ public class IConsultConductoresIn implements IConsultConductores{
 		entityManager.remove(entity);
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
-	public List<Tmio1Conductore> consultaFechaEspecifica(String fechaConsulta) {
-		String jpql = "SELECT pp FROM Tmio1Servicio "
-				+ "kk INNER JOIN kk.tmio1Conductore pp WHERE kk.id.fechaInicio <= '" + fechaConsulta + "' "
-						+ "AND kk.id.fechaFin >= '" + fechaConsulta + "'ORDER BY kk.id.fechaFin desc";
-		
-		return entityManager.createQuery(jpql).getResultList();
+	public List<Tmio1Conductore> consultaPunto2a(BigDecimal fechaConsulta) {
+		return null;
 	}
-	@Override
-	public Tmio1Conductore findById(String cedula) {
-		String jpql= "Select a from Tmio1Conductore a WHERE a.cedula = '"+ cedula+"'";
-		return (Tmio1Conductore)entityManager.createQuery(jpql).getSingleResult();
-	}
+	
+//	@Override
+//	public Tmio1Conductore findById(String cedula) {
+//		String jpql= "Select a from Tmio1Conductore a WHERE a.cedula = '"+ cedula+"'";
+//		return (Tmio1Conductore)entityManager.createQuery(jpql).getSingleResult();
+//	}
+	
 }
