@@ -1,5 +1,7 @@
 package co.edu.icesi.ci.restcontroller;
 
+import java.util.Optional;
+
 import co.edu.icesi.ci.talleres.model.UserApp;
 import co.edu.icesi.ci.talleres.model.UserType;
 
@@ -7,7 +9,7 @@ public interface ClientRestController {
 	
 	public UserApp save(UserApp user);
 
-	public UserApp findById(long id);
+	public Optional<UserApp> findById(long id);
 
 	public Iterable<UserApp> findAll();
 
