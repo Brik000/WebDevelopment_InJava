@@ -10,19 +10,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import co.edu.icesi.ci.talleres.delegate.ClientDelegateImpl;
 import co.edu.icesi.ci.talleres.model.UserApp;
-import co.edu.icesi.ci.talleres.services.UserService;
 import co.edu.icesi.ci.talleres.validation.Step1;
+import lombok.Data;
 
 
 @Controller
+@Data
 public class UserController {
-	UserService userService;
+	
+	ClientDelegateImpl clientDelegate;
 
 	@Autowired
-	public UserController(UserService userService) {
-		this.userService = userService;
-		;
+	public UserController(ClientDelegateImpl clientDel) {
+		clientDelegate = clientDel;
+		
 	}
 
     @GetMapping("/login")
@@ -37,14 +40,14 @@ public class UserController {
     
 	@GetMapping("/users/")
 	public String indexUser(Model model) {
-		model.addAttribute("users", userService.findAll());
+		model.addAttribute("users", clientDelegate.findAll());
 		return "users/index";
 	}
 	
 	@GetMapping("/users/add1")
 	public String addUser1(Model model) {
 		model.addAttribute("userApp", new UserApp());
-		model.addAttribute("types", userService.getTypes());
+		model.addAttribute("types", clientDelegate.getTypes());
 		return "users/add-user2";
 	}
 	
@@ -53,10 +56,10 @@ public class UserController {
 			@RequestParam(value = "action", required = true) String action, Model model) {
 		if (!action.equals("Cancel"))
 			if (bindingResult.hasErrors()) {
-				model.addAttribute("types", userService.getTypes());
+				model.addAttribute("types", clientDelegate.getTypes());
 				return "users/add-user2";
 			} else {
-				userService.save(user);
+				clientDelegate.save(user);
 			}
 		return "redirect:/users/";
 	}

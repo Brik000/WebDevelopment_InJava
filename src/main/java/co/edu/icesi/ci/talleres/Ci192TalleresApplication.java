@@ -9,6 +9,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.thymeleaf.extras.java8time.dialect.Java8TimeDialect;
 
+import co.edu.icesi.ci.talleres.dao.BusDao;
+import co.edu.icesi.ci.talleres.dao.ConductorDao;
+import co.edu.icesi.ci.talleres.dao.RutaDao;
+import co.edu.icesi.ci.talleres.dao.ServicioDao;
 import co.edu.icesi.ci.talleres.model.BusType;
 import co.edu.icesi.ci.talleres.model.Tmio1Bus;
 import co.edu.icesi.ci.talleres.model.Tmio1Conductore;
@@ -38,7 +42,7 @@ public class Ci192TalleresApplication {
 
 	
 	@Bean
-	public CommandLineRunner demo(UserRepository userRepository,BusesRepository busRepository, RutasRepository rutaRepository, ConductoresRepository conductoresRepository, ServiciosRepository serviceRepository) {
+	public CommandLineRunner demo(UserRepository userRepository,BusDao busRepository, RutaDao rutaRepository, ConductorDao conductoresRepository, ServicioDao serviceRepository) {
 		return (args) -> {
 			UserApp user = new UserApp();			
 			user.setUsername("admin");
@@ -58,7 +62,6 @@ public class Ci192TalleresApplication {
 			bus.setModelo(new BigDecimal(44));
 			bus.setPlaca("HEL546");
 			bus.setTipo(BusType.E+"");
-			bus.setId(1);
 			busRepository.save(bus);
 			
 			Tmio1Conductore c= new Tmio1Conductore();
@@ -76,7 +79,6 @@ public class Ci192TalleresApplication {
 			ruta.setDiaInicio(new BigDecimal(33));
 			ruta.setHoraFin(new BigDecimal(22));
 			ruta.setHoraInicio(new BigDecimal(2));
-			ruta.setId(1);
 			ruta.setNumero("22");
 			rutaRepository.save(ruta);
 			

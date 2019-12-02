@@ -1,4 +1,4 @@
-package co.edu.icesi.ci.restcontroller;
+package co.edu.icesi.ci.talleres.restcontroller;
 
 import java.util.Optional;
 

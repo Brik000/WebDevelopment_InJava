@@ -23,7 +23,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //		.permitAll().and().exceptionHandling().accessDeniedHandler(accessDeniedHandler);
 //		
 		
-		httpSecurity.authorizeRequests().antMatchers("/**").authenticated().and()
+//		httpSecurity.csrf().disable().authorizeRequests()
+//		.antMatchers("/api/**").permitAll()
+//		.antMatchers("/bus/**").access("hasRole('admin')")
+//		.antMatchers("/driver/**").access("hasRole('admin')")
+//		.antMatchers("/route/**").access("hasRole('admin')")
+//		.antMatchers("/services/**").access("hasRole('admin') OR hasRole('operador')")
+//		.antMatchers("/services/add-service/**").access("hasRole('operador')")
+//		.antMatchers("/services/edit/**").access("hasRole('operador')")	
+//		.and().formLogin().loginPage("/login").permitAll().and()
+//		.logout().invalidateHttpSession(true).clearAuthentication(true).permitAll().and().exceptionHandling().accessDeniedHandler(accessDeniedHandler);
+
+	
+
+		httpSecurity.csrf().disable().authorizeRequests().antMatchers("/**").permitAll().and()
 		.formLogin().loginPage("/login").permitAll().and()
 		.logout().invalidateHttpSession(true).clearAuthentication(true).permitAll().and().exceptionHandling().accessDeniedHandler(accessDeniedHandler);
 	}

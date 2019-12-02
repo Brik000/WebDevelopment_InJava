@@ -1,4 +1,4 @@
-package co.edu.icesi.ci.delegate;
+package co.edu.icesi.ci.talleres.delegate;
 
 import java.util.Arrays;
 import java.util.List;

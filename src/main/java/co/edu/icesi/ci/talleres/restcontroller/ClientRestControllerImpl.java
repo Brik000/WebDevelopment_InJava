@@ -1,4 +1,4 @@
-package co.edu.icesi.ci.restcontroller;
+package co.edu.icesi.ci.talleres.restcontroller;
 
 import java.util.Optional;
 
@@ -21,42 +21,42 @@ public class ClientRestControllerImpl implements ClientRestController{
 	private UserService service;
 	
 	@Override
-	@PostMapping("/users")
+	@PostMapping("api/users")
 	public UserApp save(@RequestBody UserApp user) {
 		service.save(user);
 		return user;
 	}
 
 	@Override
-	@GetMapping("/users/{id}")
+	@GetMapping("api/users/{id}")
 	public Optional<UserApp> findById(@PathVariable long id) {
 		// TODO Auto-generated method stub
 		return service.findById(id);
 	}
 
 	@Override
-	@GetMapping("/users")
+	@GetMapping("api/users")
 	public Iterable<UserApp> findAll() {
 		// TODO Auto-generated method stub
 		return service.findAll();
 	}
 
 	@Override
-	@GetMapping("/admins")
+	@GetMapping("api/admins")
 	public Iterable<UserApp> findAllAdmins() {
 		// TODO Auto-generated method stub
 		return service.findAllAdmins();
 	}
 
 	@Override
-	@GetMapping("/operators")
+	@GetMapping("api/operators")
 	public Iterable<UserApp> findAllOperators() {
 		// TODO Auto-generated method stub
 		return service.findAllOperators();
 	}
 
 	@Override
-	@DeleteMapping("/users/{id}")
+	@DeleteMapping("api/users/{id}")
 	public UserApp delete(UserApp user) {
 		Optional<UserApp> newUser = service.findById(user.getId());
 		service.delete(newUser.get());
