@@ -13,7 +13,7 @@ import co.edu.icesi.ci.talleres.model.UserType;
 public class ClientDelegateImpl implements ClientDelegate{
 
 	RestTemplate restTemplate;
-	final String SERVER = "http://localhost:8080/api/";
+	public static String SERVER = "http://localhost:8080/api/";
 	
 	public ClientDelegateImpl() {
 		restTemplate= new RestTemplate();
