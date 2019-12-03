@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import co.edu.icesi.ci.talleres.dao.IBusDao;
+import co.edu.icesi.ci.talleres.model.BusType;
 import co.edu.icesi.ci.talleres.model.Tmio1Bus;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -34,7 +35,7 @@ public class TestBus {
 		bus.setMarca("Porsche");
 		bus.setModelo(new BigDecimal(911));
 		bus.setPlaca("HGQ-400");
-		bus.setTipo("convertible");
+		bus.setTipo(BusType.E);
 			
 		busDao.save(bus);
 
@@ -49,7 +50,7 @@ public class TestBus {
 		bus.setMarca("Porsche");
 		bus.setModelo(new BigDecimal(911));
 		bus.setPlaca("HGQ-400");
-		bus.setTipo("convertible");
+		bus.setTipo(BusType.E);
 		
 		busDao.save(bus);
 		
@@ -68,11 +69,11 @@ public class TestBus {
 		bus.setMarca("Porsche");
 		bus.setModelo(new BigDecimal(911));
 		bus.setPlaca("HGQ-400");
-		bus.setTipo("convertible");
+		bus.setTipo(BusType.E);
 		busDao.save(bus);
 		
 		bus.setMarca("Ferrari");
-		bus.setTipo("Coupe");
+		bus.setTipo(BusType.E);
 		
 		busDao.update(bus);
 		
@@ -89,14 +90,14 @@ public class TestBus {
 		bus.setMarca("Porsche");
 		bus.setModelo(new BigDecimal(911));
 		bus.setPlaca("HGQ-400");
-		bus.setTipo("convertible");
+		bus.setTipo(BusType.E);
 		
 		Tmio1Bus bus1=new Tmio1Bus();
 		bus1.setCapacidad(new BigDecimal(56));
 		bus1.setMarca("Ferrari");
 		bus1.setModelo(new BigDecimal(718));
 		bus1.setPlaca("BZB-473");
-		bus1.setTipo("superSport");
+		bus1.setTipo(BusType.E);
 		
 		busDao.save(bus);
 		busDao.save(bus1);
@@ -116,7 +117,7 @@ public class TestBus {
 		bus.setMarca("Porsche");
 		bus.setModelo(new BigDecimal(911));
 		bus.setPlaca("HGQ-400");
-		bus.setTipo("convertible");
+		bus.setTipo(BusType.E);
 		busDao.save(bus);
 		
 		Tmio1Bus a=busDao.findByPlaca("HGQ-400").get(0);
@@ -135,7 +136,7 @@ public class TestBus {
 		bus.setMarca("Porsche");
 		bus.setModelo(new BigDecimal(911));
 		bus.setPlaca("HGQ-400");
-		bus.setTipo("convertible");
+		bus.setTipo(BusType.E);
 		busDao.save(bus);
 		
 		Tmio1Bus a=busDao.findByMarca("Porsche").get(0);
@@ -153,7 +154,7 @@ public class TestBus {
 		bus.setMarca("Porsche");
 		bus.setModelo(new BigDecimal(911));
 		bus.setPlaca("HGQ-400");
-		bus.setTipo("convertible");
+		bus.setTipo(BusType.E);
 		busDao.save(bus);
 		
 		Tmio1Bus a=busDao.findByModelo(new BigDecimal(911)).get(0);

@@ -42,14 +42,14 @@ public class ClientRestControllerImpl implements ClientRestController{
 	}
 
 	@Override
-	@GetMapping("api/admins")
+	@GetMapping("api/users/admins")
 	public Iterable<UserApp> findAllAdmins() {
 		// TODO Auto-generated method stub
 		return service.findAllAdmins();
 	}
 
 	@Override
-	@GetMapping("api/operators")
+	@GetMapping("api/users/operators")
 	public Iterable<UserApp> findAllOperators() {
 		// TODO Auto-generated method stub
 		return service.findAllOperators();
@@ -64,6 +64,7 @@ public class ClientRestControllerImpl implements ClientRestController{
 	}
 
 	@Override
+	@GetMapping("api/users/types")
 	public UserType[] getTypes() {
 		// TODO Auto-generated method stub
 		return service.getTypes();

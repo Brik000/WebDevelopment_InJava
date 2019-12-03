@@ -35,19 +35,27 @@ public class BusService implements BusServiceIn{
 			throw new Exception("El tipo debe ser un elemento valido");
 		}
 	}
+	
 	@Override
 	public Optional<Tmio1Bus> findById(int id) throws Exception {
 		return busRepository.findById(id); 
 	}
+	
 	public void setRepository(BusesRepository busRepository) {
 		this.busRepository= busRepository;
 	}
+	
+	@Override
 	public Iterable<Tmio1Bus> findAll() {
 		return busRepository.findAll();
 	}
+	
+	@Override
 	public void delete(Tmio1Bus user) {
 		busRepository.delete(user);
 	}
+	
+	@Override
 	public BusType[] getTypes() {
 		return BusType.values();
 	}

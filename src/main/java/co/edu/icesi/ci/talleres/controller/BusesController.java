@@ -9,33 +9,32 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import co.edu.icesi.ci.talleres.delegate.BusesDelegateImpl;
 import co.edu.icesi.ci.talleres.model.Tmio1Bus;
-import co.edu.icesi.ci.talleres.services.BusService;
-import co.edu.icesi.ci.talleres.validation.Step1;
 
 
 @Controller
 public class BusesController {
 
-	BusService busService;
+	BusesDelegateImpl busesDelegate;
 	
 	@Autowired
-	public BusesController(BusService busService) {
-		this.busService = busService;
+	public BusesController(BusesDelegateImpl busesDelegate) {
+		this.busesDelegate = busesDelegate;
 		;
 	}
 
     
 	@GetMapping("/buses/")
 	public String indexBus(Model model) {
-		model.addAttribute("buses", busService.findAll());
+		model.addAttribute("buses", busesDelegate.findAll());
 		return "buses/index";
 	}
 	
 	@GetMapping("/buses/add1")
 	public String addBus1(Model model) {
 		model.addAttribute("tmio1Bus", new Tmio1Bus());
-		model.addAttribute("types", busService.getTypes());
+		model.addAttribute("types", busesDelegate.getTypes());
 		return "buses/add-buses2";
 	}
 	
@@ -44,11 +43,11 @@ public class BusesController {
 			@RequestParam(value = "action", required = true) String action, Model model) {
 		if (!action.equals("Cancel"))
 			if (bindingResult.hasErrors()) {
-				model.addAttribute("types", busService.getTypes());
+				model.addAttribute("types", busesDelegate.getTypes());
 				return "buses/add-buses2";
 			} else {
 				try {
-					busService.saveBus(tmio1Bus);
+					busesDelegate.saveBus(tmio1Bus);
 				} catch (Exception e) {
 					model.addAttribute("error", new Error(e.getMessage()));
 					return "redirect:/error/"; 

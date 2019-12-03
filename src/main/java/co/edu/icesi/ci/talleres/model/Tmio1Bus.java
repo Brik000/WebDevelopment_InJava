@@ -36,8 +36,8 @@ public class Tmio1Bus implements Serializable {
 	@NotBlank
 	private String placa;
 
-	@NotBlank
-	private String tipo;
+	@NotNull
+	private BusType tipo;
 
 	//bi-directional many-to-one association to Tmio1Servicio
 	@OneToMany(mappedBy="tmio1Bus")
@@ -90,11 +90,11 @@ public class Tmio1Bus implements Serializable {
 		this.placa = placa;
 	}
 
-	public String getTipo() {
+	public BusType getTipo() {
 		return this.tipo;
 	}
 
-	public void setTipo(String tipo) {
+	public void setTipo(BusType tipo) {
 		this.tipo = tipo;
 	}
 

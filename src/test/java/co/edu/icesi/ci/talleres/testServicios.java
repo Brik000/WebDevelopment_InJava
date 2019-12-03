@@ -17,6 +17,7 @@ import co.edu.icesi.ci.talleres.dao.IBusDao;
 import co.edu.icesi.ci.talleres.dao.IConductorDao;
 import co.edu.icesi.ci.talleres.dao.IRutaDao;
 import co.edu.icesi.ci.talleres.dao.IServicioDao;
+import co.edu.icesi.ci.talleres.model.BusType;
 import co.edu.icesi.ci.talleres.model.Tmio1Bus;
 import co.edu.icesi.ci.talleres.model.Tmio1Conductore;
 import co.edu.icesi.ci.talleres.model.Tmio1Ruta;
@@ -96,7 +97,7 @@ public class testServicios {
 		bus1.setMarca("Mercedes");
 		bus1.setModelo(new BigDecimal(2017));
 		bus1.setPlaca("HEL546");
-		bus1.setTipo("A");
+		bus1.setTipo(BusType.E);
 		
 		busDao.save(bus1);
 		
@@ -105,7 +106,7 @@ public class testServicios {
 		bus2.setMarca("Mercedes");
 		bus2.setModelo(new BigDecimal(2012));
 		bus2.setPlaca("DIE312");
-		bus2.setTipo("P");
+		bus2.setTipo(BusType.E);
 		
 		busDao.save(bus2);
 		

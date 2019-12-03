@@ -46,7 +46,7 @@ public class ClientDelegateImpl implements ClientDelegate{
 
 	@Override
 	public Iterable<UserApp> findAllAdmins() {
-		UserApp[] users= restTemplate.getForObject(SERVER+"admins", UserApp[].class);
+		UserApp[] users= restTemplate.getForObject(SERVER+"users/admins", UserApp[].class);
 		List<UserApp> at;
 		List<UserApp> admins= null;
 		try {
@@ -65,7 +65,7 @@ public class ClientDelegateImpl implements ClientDelegate{
 
 	@Override
 	public Iterable<UserApp> findAllOperators() {
-		UserApp[] users= restTemplate.getForObject(SERVER+"operators", UserApp[].class);
+		UserApp[] users= restTemplate.getForObject(SERVER+"users/operators", UserApp[].class);
 		List<UserApp> at;
 		List<UserApp> oper= null;
 		try {
@@ -90,7 +90,7 @@ public class ClientDelegateImpl implements ClientDelegate{
 
 	@Override
 	public UserType[] getTypes() {
-		UserApp[] users= restTemplate.getForObject(SERVER+"operators", UserApp[].class);
+		UserApp[] users= restTemplate.getForObject(SERVER+"users/types", UserApp[].class);
 		List<UserApp> at;
 		List<UserType> tp=null;
 		UserType[] types= new UserType[users.length];

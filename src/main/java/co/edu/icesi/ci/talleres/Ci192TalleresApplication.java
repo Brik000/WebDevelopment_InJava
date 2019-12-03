@@ -61,7 +61,7 @@ public class Ci192TalleresApplication {
 			bus.setMarca("Nothing");
 			bus.setModelo(new BigDecimal(44));
 			bus.setPlaca("HEL546");
-			bus.setTipo(BusType.E+"");
+			bus.setTipo(BusType.E);
 			busRepository.save(bus);
 			
 			Tmio1Conductore c= new Tmio1Conductore();
