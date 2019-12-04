@@ -24,7 +24,7 @@ SitiorutaService sitioService;
 	public SitioRutaRestController(SitiorutaService sitioService) {
 		this.sitioService= sitioService;
 	}
-	@GetMapping("api/sitioruta")
+	@GetMapping("api/sitioruta/all")
 	public List<Tmio1SitiosRuta> findAll() {
 		
 		return sitioService.findAll();

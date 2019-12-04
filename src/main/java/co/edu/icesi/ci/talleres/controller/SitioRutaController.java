@@ -3,6 +3,7 @@ package co.edu.icesi.ci.talleres.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +18,7 @@ import co.edu.icesi.ci.talleres.model.Tmio1SitiosRuta;
 import co.edu.icesi.ci.talleres.model.Tmio1SitiosRutaPK;
 import co.edu.icesi.ci.talleres.services.SitioService;
 
-
+@Controller
 public class SitioRutaController {
 	
 	SitioRutaDelegate sitioDelegate;
@@ -25,20 +26,20 @@ public class SitioRutaController {
 	public SitioRutaController(SitioRutaDelegate sitioService){
 		this.sitioDelegate= sitioService;
 	}
-	@GetMapping("/Sitio-Ruta/")
+	@GetMapping("/sitioruta/")
 	public String index(Model model) {
 		model.addAttribute("sitiosRuta",sitioDelegate.findAll());
 		return "/sitioruta/index";
 	}
-	@GetMapping("/sitioRuta/add-sitioRuta")
+	@GetMapping("/sitioruta/add-sitioRuta")
 	public String addSitio(Model model){
 		model.addAttribute("tmio1Sitio",new Tmio1SitiosRutaPK());
 		model.addAttribute("routes", sitioDelegate.getAllRoutes());	
 		model.addAttribute("sitios", sitioDelegate.getAllSitio());
-		return "/sitioruta/add-Sitioruta";
+		return "sitioruta/add-Sitioruta";
 	}
 	@PostMapping("sitioRuta/add-sitioRuta/")
-	public String saveSitio(@Valid @ModelAttribute("sitioRuta") Tmio1SitiosRutaPK sitio, BindingResult bindingResult, Model model) {
+	public String saveSitio(@Valid @ModelAttribute("tmio1Sitio") Tmio1SitiosRutaPK sitio, BindingResult bindingResult, Model model) {
 		if(bindingResult.hasErrors()) {
 			model.addAttribute("sitioRuta",sitio);
 			return "/sitioruta/add-Sitioruta";
