@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import co.edu.icesi.ci.talleres.delegate.ClientDelegateImpl;
 import co.edu.icesi.ci.talleres.model.UserApp;
+import co.edu.icesi.ci.talleres.model.UserType;
 import co.edu.icesi.ci.talleres.validation.Step1;
 import lombok.Data;
 
@@ -47,7 +48,7 @@ public class UserController {
 	@GetMapping("/users/add1")
 	public String addUser1(Model model) {
 		model.addAttribute("userApp", new UserApp());
-		model.addAttribute("types", clientDelegate.getTypes());
+		model.addAttribute("types", UserType.values());
 		return "users/add-user2";
 	}
 	
@@ -56,7 +57,7 @@ public class UserController {
 			@RequestParam(value = "action", required = true) String action, Model model) {
 		if (!action.equals("Cancel"))
 			if (bindingResult.hasErrors()) {
-				model.addAttribute("types", clientDelegate.getTypes());
+				model.addAttribute("types", UserType.values());
 				return "users/add-user2";
 			} else {
 				clientDelegate.save(user);
