@@ -50,74 +50,63 @@ public class ServicioRestControllerImpl implements ServiceRestController {
 	}
 
 	@Override
-	@PostMapping("api/servicios2")
 	public Tmio1Servicio saveService2(Tmio1Servicio service) {
 		// TODO Auto-generated method stub
-		servicio.saveService2(service);
-		return service;
+		return null;
 	}
 
 	@Override
-	@GetMapping("api/servicios/buses")
 	public Iterable<Tmio1Bus> findAllBuses() {
 		// TODO Auto-generated method stub
-		return servicio.findAllBuses();
+		return null;
 	}
 
 	@Override
-	@GetMapping("api/servicios/conductores")
 	public Iterable<Tmio1Conductore> findAllDrivers() {
 		// TODO Auto-generated method stub
-		return servicio.findAllDrivers();
+		return null;
 	}
 
 	@Override
-	@GetMapping("api/servicios/rutas")
 	public Iterable<Tmio1Ruta> findAllRoutes() {
 		// TODO Auto-generated method stub
-		return servicio.findAllRoutes();
+		return null;
 	}
 
 	@Override
-	@GetMapping("api/servicios")
 	public Iterable<Tmio1Servicio> findAllServices() {
 		// TODO Auto-generated method stub
-		return servicio.findAllServices();
+		return null;
 	}
 
 	@Override
-	@GetMapping("api/servicios/buses/{busId}")
 	public Optional<Tmio1Bus> findByBusId(Integer busId) {
 		// TODO Auto-generated method stub
-		return servicio.findByBusId(busId);
+		return null;
 	}
 
 	@Override
-	@GetMapping("api/servicios/conductores/{driverId}")
 	public Optional<Tmio1Conductore> findByDriverId(String driverId) {
 		// TODO Auto-generated method stub
-		return servicio.findByDriverId(driverId);
+		return null;
 	}
 
 	@Override
-	@GetMapping("api/servicios/rutas/{routeId}")
 	public Optional<Tmio1Ruta> findByRouteId(Integer routeId) {
 		// TODO Auto-generated method stub
-		return servicio.findByRouteId(routeId);
+		return null;
 	}
 
 	@Override
-	@GetMapping("api/servicios/pk/{id}")
 	public Optional<Tmio1ServicioPK> findPKId(String id) {
 		// TODO Auto-generated method stub
-		return servicio.findPKId(id);
+		return null;
 	}
 
 	@Override
-	@PostMapping("api/servicios/filtrar")
 	public Iterable<Tmio1Servicio> filtrar(LocalDate fechaInicio) {
 		// TODO Auto-generated method stub
-		return servicio.filtrar(fechaInicio);
+		return null;
 	}
 	
 	@PatchMapping("/api/service")

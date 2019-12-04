@@ -17,10 +17,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+<<<<<<< HEAD
 import co.edu.icesi.ci.talleres.delegate.ServiceDelegateImpl;
 import co.edu.icesi.ci.talleres.model.Tmio1Bus;
 import co.edu.icesi.ci.talleres.model.Tmio1Conductore;
 import co.edu.icesi.ci.talleres.model.Tmio1Ruta;
+=======
+>>>>>>> parent of fcd2a8c... RestService already
 import co.edu.icesi.ci.talleres.model.Tmio1Servicio;
 import co.edu.icesi.ci.talleres.model.Tmio1ServicioPK;
 import co.edu.icesi.ci.talleres.services.ServiceService;
@@ -28,11 +31,10 @@ import co.edu.icesi.ci.talleres.services.ServiceService;
 
 @Controller
 public class ServiceController{
-	
-	ServiceDelegateImpl service;
+	ServiceService service;
 
 	@Autowired
-	public ServiceController(ServiceDelegateImpl service) {
+	public ServiceController(ServiceService service) {
 		this.service= service;
 		;
 	}

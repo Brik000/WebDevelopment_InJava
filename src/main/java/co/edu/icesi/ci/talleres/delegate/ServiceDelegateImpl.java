@@ -3,7 +3,6 @@ package co.edu.icesi.ci.talleres.delegate;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -114,26 +113,26 @@ public class ServiceDelegateImpl implements ServiceDelegate{
 
 	@Override
 	public Tmio1Bus findByBusId(Integer busId) {
-		Tmio1Bus bus= restTemplate.getForObject(SERVER+"servicios/buses/"+busId, Tmio1Bus.class);
+		Tmio1Bus bus= restTemplate.getForObject(SERVER+"servicios/buses"+busId, Tmio1Bus.class);
 		return bus;
 	}
 
 	@Override
 	public Tmio1Conductore findByDriverId(String driverId) {
-		Tmio1Conductore conductor= restTemplate.getForObject(SERVER+"servicios/conductores/"+driverId, Tmio1Conductore.class);
+		Tmio1Conductore conductor= restTemplate.getForObject(SERVER+"servicios/conductores"+driverId, Tmio1Conductore.class);
 		return conductor;
 	}
 
 	@Override
 	public Tmio1Ruta findByRouteId(Integer routeId) {
-		Tmio1Ruta ruta= restTemplate.getForObject(SERVER+"servicios/rutas/"+routeId, Tmio1Ruta.class);
+		Tmio1Ruta ruta= restTemplate.getForObject(SERVER+"servicios/rutas"+routeId, Tmio1Ruta.class);
 		return ruta;
 	}
 
 	@Override
-	public Optional<Tmio1ServicioPK> findPKId(String id) {
-		Tmio1ServicioPK servicePK= restTemplate.getForObject(SERVER+"servicios/pk/"+id, Tmio1ServicioPK.class);
-		return Optional.of(servicePK);
+	public Tmio1ServicioPK findPKId(String id) {
+		Tmio1ServicioPK servicePK= restTemplate.getForObject(SERVER+"servicios/pk"+id, Tmio1ServicioPK.class);
+		return servicePK;
 	}
 
 	@Override
