@@ -21,6 +21,16 @@ public class Tmio1SitiosRuta implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="id_ruta", insertable=false, updatable=false)
 	private Tmio1Ruta tmio1Ruta1;
+	
+private int hash;
+	
+	public int getHash() {
+		return hash;
+	}
+
+	public void setHash(int hash) {
+		this.hash = hash;
+	}
 
 	//bi-directional many-to-one association to Tmio1Ruta
 	@ManyToOne
