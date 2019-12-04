@@ -31,10 +31,10 @@ public class SitiosController {
 	}
 	@GetMapping("/Sitio/add-Sitio")
 	public String addSitio(Model model){
-		model.addAttribute("sitio",new Tmio1Sitio());
+		model.addAttribute("tmio1Sitio",new Tmio1Sitio());
 		return "/Sitio/add-sitio";
 	}
-	@PostMapping("/Sitio/add-Sitio/")
+	@PostMapping("/Sitio/add-Sitio")
 	public String saveSitio(@Valid @ModelAttribute("sitio") Tmio1Sitio sitio, BindingResult bindingResult, Model model) {
 		if(bindingResult.hasErrors()) {
 			model.addAttribute("sitio",sitio);
@@ -45,7 +45,7 @@ public class SitiosController {
 	}
 	@GetMapping("/Sitio/edit/{id}")
 	public String editSitio(@PathVariable("id") int id,Model model){
-		model.addAttribute("Sitio",sitioDelegate.findById(id));	
+		model.addAttribute("tmio1Sitio",sitioDelegate.findById(id));	
 		return "/Sitio/edit-sitio";
 	}
 	@GetMapping("/Sitio/delete/{id}")
