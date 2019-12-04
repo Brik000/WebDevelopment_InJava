@@ -103,7 +103,11 @@ public class ServicioRestControllerImpl implements ServiceRestController {
 	@Override
 	public Iterable<Tmio1Servicio> filtrar(LocalDate fechaInicio) {
 		// TODO Auto-generated method stub
+<<<<<<< HEAD
 		return null;
+=======
+		return servicio.filtrar(fechaInicio);
+>>>>>>> parent of 80eeda7... mm
 	}
 
 }
