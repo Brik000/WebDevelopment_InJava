@@ -73,7 +73,7 @@ public class SitioRutaDelegate {
 		return bus;
 	}
 	public Tmio1SitiosRuta findById(int id) {
-		Tmio1SitiosRuta bus= restTemplate.getForObject(SERVER+"/sitioruta/"+id, Tmio1SitiosRuta.class);
+		Tmio1SitiosRuta bus= restTemplate.getForObject(SERVER+"sitioruta/"+id, Tmio1SitiosRuta.class);
 		return bus;
 	}
 	public Tmio1SitiosRuta saveSitio(Tmio1SitiosRuta nuevo) {

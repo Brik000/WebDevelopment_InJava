@@ -107,6 +107,11 @@
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>5.2.13.Final</version>
 		</dependency>
+		<dependency>
+<groupId>org.postgresql</groupId>
+<artifactId>postgresql</artifactId>
+<scope>runtime</scope>
+</dependency>
 		
 		<dependency>
 			<groupId>org.testng</groupId>
