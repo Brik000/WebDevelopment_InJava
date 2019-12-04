@@ -8,4 +8,6 @@ public interface RutaServiceIn {
 	public void saveRuta(Tmio1Ruta ruta);
 	public void validarRuta(Tmio1Ruta ruta) throws Exception;
 	public Optional<Tmio1Ruta> findById(int id) throws Exception;
+	public Iterable<Tmio1Ruta> findAll();
+	public void delete(Tmio1Ruta user);
 }

@@ -17,24 +17,25 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 
+import co.edu.icesi.ci.talleres.delegate.RutasDelegateImpl;
 import co.edu.icesi.ci.talleres.model.Tmio1Ruta;
-import co.edu.icesi.ci.talleres.services.RutaService;
-import co.edu.icesi.ci.talleres.validation.Step1;
+
 
 
 @Controller
 public class RutasController {
-	RutaService rutaService;
+	
+	RutasDelegateImpl rutaDelegate;
 
 	@Autowired
-	public RutasController(RutaService rutaService) {
-		this.rutaService= rutaService;
+	public RutasController(RutasDelegateImpl rutaDelegate) {
+		this.rutaDelegate= rutaDelegate;
 		;
 	}
     
 	@GetMapping("/rutas/")
 	public String indexUser(Model model) {
-		model.addAttribute("rutas", rutaService.findAll());
+		model.addAttribute("rutas", rutaDelegate.findAll());
 		model.addAttribute("dateNew", LocalDate.now());
 		return "rutas/index";
 	}
@@ -53,7 +54,7 @@ public class RutasController {
 			if (bindingResult.hasErrors()) {
 				return "rutas/add-ruta2";
 			} else {
-				rutaService.saveRuta(ruta);
+				rutaDelegate.saveRuta(ruta);
 			}
 		return "redirect:/rutas/";
 	}

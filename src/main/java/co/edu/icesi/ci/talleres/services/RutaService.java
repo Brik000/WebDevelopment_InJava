@@ -33,13 +33,16 @@ public class RutaService implements RutaServiceIn{
 	public Optional<Tmio1Ruta> findById(int id) throws Exception {
 		return rutaRepository.findById(id);
 	}
+	
 	public void setRepository(RutasRepository rutaRepository) {
 		this.rutaRepository= rutaRepository;
 	}
 	
+	@Override
 	public Iterable<Tmio1Ruta> findAll() {
 		return rutaRepository.findAll();
 	}
+	@Override
 	public void delete(Tmio1Ruta user) {
 		rutaRepository.delete(user);
 	}
