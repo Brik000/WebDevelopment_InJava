@@ -34,12 +34,15 @@ public class ConductorService implements ConductorServiceIn{
 	public Optional<Tmio1Conductore> findByCedula(String cedula) throws Exception {
 		return conductorRepository.findById(cedula);
 	}
+	@Override
 	public void setRepository(ConductoresRepository conductoRepository) {
 		this.conductorRepository= conductoRepository;
 	}
+	@Override
 	public Iterable<Tmio1Conductore> findAll() {
 		return conductorRepository.findAll();
 	}
+	@Override
 	public void delete(Tmio1Conductore user) {
 		conductorRepository.delete(user);
 	}

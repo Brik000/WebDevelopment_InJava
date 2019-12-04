@@ -6,30 +6,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import co.edu.icesi.ci.talleres.delegate.ConductorDelegateImpl;
 import co.edu.icesi.ci.talleres.model.Tmio1Conductore;
-import co.edu.icesi.ci.talleres.services.ConductorService;
 
 
 @Controller
 public class ConductoresController {
 
-	ConductorService conductorService;
+	ConductorDelegateImpl conductorDelegate;
 	
 	@Autowired
-	public ConductoresController(ConductorService conductorService) {
-		this.conductorService = conductorService;
+	public ConductoresController(ConductorDelegateImpl conductorDelegate) {
+		this.conductorDelegate = conductorDelegate;
 		;
 	}
     
 	@GetMapping("/conductores/")
 	public String indexConductor(Model model) {
-		model.addAttribute("conductores", conductorService.findAll());
+		model.addAttribute("conductores", conductorDelegate.findAll());
 		return "conductores/index";
 	}
 	
@@ -46,7 +45,7 @@ public class ConductoresController {
 				return "/conductores/add-conductor";
 			} else {
 				try {
-					conductorService.saveConductor(driver);
+					conductorDelegate.saveConductor(driver);
 				} catch (Exception e) {
 					model.addAttribute("error", new Error(e.getMessage()));
 					return "redirect:/error/"; 
