@@ -5,15 +5,16 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import co.edu.icesi.ci.talleres.dao.RutaDao;
 import co.edu.icesi.ci.talleres.model.Tmio1Conductore;
 import co.edu.icesi.ci.talleres.model.Tmio1Ruta;
 import co.edu.icesi.ci.talleres.repositories.RutasRepository;
 
 @Service
 public class RutaService implements RutaServiceIn{
-	private RutasRepository rutaRepository;
+	private RutaDao rutaRepository;
 	@Autowired
-	public RutaService(RutasRepository rutaRepository) {
+	public RutaService(RutaDao rutaRepository) {
 		this.rutaRepository= rutaRepository;
 	}
 	@Override
@@ -34,7 +35,7 @@ public class RutaService implements RutaServiceIn{
 		return rutaRepository.findById(id);
 	}
 	
-	public void setRepository(RutasRepository rutaRepository) {
+	public void setRepository(RutaDao rutaRepository) {
 		this.rutaRepository= rutaRepository;
 	}
 	

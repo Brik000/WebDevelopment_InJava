@@ -15,6 +15,9 @@ import co.edu.icesi.ci.talleres.model.Tmio1Sitio;
 
 @Component
 public class SitioDelegate {
+	
+	
+	
 	RestTemplate restTemplate=new RestTemplate();
 	public static String SERVER = "http://localhost:8080/api/";
 	
@@ -28,6 +31,8 @@ public class SitioDelegate {
 			e.printStackTrace();
 		}
 		return null;
+		
+		
 	}
 	public Tmio1Sitio findById(int id) {
 		Tmio1Sitio bus= restTemplate.getForObject(SERVER+"sitio/"+id, Tmio1Sitio.class);

@@ -39,15 +39,16 @@ public class SitioRutaController {
 		return "sitioruta/add-Sitioruta";
 	}
 	@PostMapping("sitioRuta/add-sitioRuta/")
-	public String saveSitio(@Valid @ModelAttribute("tmio1Sitio") Tmio1SitiosRutaPK sitio, BindingResult bindingResult, Model model) {
+	public String saveSitio(@Valid @ModelAttribute("tmio1SitioRuta") Tmio1SitiosRutaPK sitio, BindingResult bindingResult, Model model) {
 		if(bindingResult.hasErrors()) {
-			model.addAttribute("sitioRuta",sitio);
+			model.addAttribute("tmio1Sitio",new Tmio1SitiosRutaPK());
+			model.addAttribute("routes", sitioDelegate.getAllRoutes());	
+			model.addAttribute("sitios", sitioDelegate.getAllSitio());
 			return "/sitioruta/add-Sitioruta";
 		}
 		Tmio1SitiosRuta n= new Tmio1SitiosRuta();
 		n.setHash(sitio.hashCode());
 		n.setId(sitio);
-		
 		n.setTmio1Ruta1(sitioDelegate.findRutaByID(sitio.getIdRuta()));
 		n.setTmio1Sitio1(sitioDelegate.findSitioByID(sitio.getIdSitio()));
 		

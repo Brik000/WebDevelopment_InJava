@@ -40,6 +40,7 @@ public class RutaRestControllerImpl implements RutaRestController {
 	@GetMapping("api/rutas/{id}")
 	public Optional<Tmio1Ruta> findById(int id) throws Exception {
 		// TODO Auto-generated method stub
+		System.out.println("ENTROOOOOOOOO");
 		return service.findById(id);
 	}
 

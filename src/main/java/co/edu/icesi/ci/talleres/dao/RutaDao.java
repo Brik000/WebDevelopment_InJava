@@ -3,6 +3,7 @@ package co.edu.icesi.ci.talleres.dao;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -30,6 +31,10 @@ public class RutaDao implements IRutaDao{
 	public void update(Tmio1Ruta entity) {
 		entityManager.merge(entity);		
 		
+	}
+	public  Optional<Tmio1Ruta> findById(Integer codigo) {
+		// TODO Auto-generated method stub
+		return Optional.of(entityManager.find(Tmio1Ruta.class, codigo));
 	}
 
 	@Override

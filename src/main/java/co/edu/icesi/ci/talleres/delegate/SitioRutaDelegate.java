@@ -2,6 +2,7 @@ package co.edu.icesi.ci.talleres.delegate;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.http.client.HttpClient;
 import org.apache.http.impl.client.HttpClients;
@@ -64,21 +65,29 @@ public class SitioRutaDelegate {
 	}
 
 	public Tmio1Ruta findRutaByID(Integer idRuta) {
-		Tmio1Ruta ruta= restTemplate.getForObject(SERVER+"rutas/"+idRuta, Tmio1Ruta.class);
-		return ruta;
+		System.out.println(SERVER+"rutas/"+idRuta+"+++++++++++++++++++++++++++++++");
+		Optional<Tmio1Ruta> ruta= restTemplate.getForObject(SERVER+"rutas/"+idRuta,  Optional.class);
+		System.out.println(ruta.get().getId()+"------------------------");
+		return ruta.get();
 	}
 
 	public Tmio1Sitio findSitioByID(Integer idSitio) {
-		Tmio1Sitio bus= restTemplate.getForObject(SERVER+"sitio/"+idSitio, Tmio1Sitio.class);
-		return bus;
+		Optional<Tmio1Sitio> bus= restTemplate.getForObject(SERVER+"sitio/"+idSitio, Optional.class);
+		System.out.println(bus.get().getId()+"------------------------");
+
+		return bus.get();
 	}
 	public Tmio1SitiosRuta findById(int id) {
 		Tmio1SitiosRuta bus= restTemplate.getForObject(SERVER+"sitioruta/"+id, Tmio1SitiosRuta.class);
 		return bus;
 	}
-	public Tmio1SitiosRuta saveSitio(Tmio1SitiosRuta nuevo) {
-		Tmio1SitiosRuta newBus= restTemplate.postForEntity(SERVER+"/sitioRuta", nuevo, Tmio1SitiosRuta.class).getBody();
-		return newBus;	
+	public String saveSitio(Tmio1SitiosRuta nuevo) {
+		Tmio1SitiosRuta sitioRuta = restTemplate.postForEntity(SERVER + "/sitioRuta", nuevo, Tmio1SitiosRuta.class).getBody();
+		if (sitioRuta == null) {
+			return "Fallo";
+		}
+		
+		return "Guardado";
 	}
 	public void removeSitio(String id) {
 		restTemplate.delete(SERVER+"sitioruta/delete/"+id);	
