@@ -20,6 +20,7 @@ import co.edu.icesi.ci.talleres.repositories.ServiciosRepository;
 
 @Service
 public class ServiceService implements ServiceServiceIn{
+	
 	@Autowired
 	private ServiciosRepository serviceRepository;
 	
@@ -49,6 +50,8 @@ public class ServiceService implements ServiceServiceIn{
 			e.printStackTrace();
 		}
 	}
+	
+	@Override
 	public void saveService2(Tmio1Servicio service) {
 		try {
 			serviceRepository.save(service);
@@ -67,33 +70,42 @@ public class ServiceService implements ServiceServiceIn{
 	public Optional<Tmio1Servicio> findById(Tmio1ServicioPK id) {
 		return serviceRepository.findById(id);
 	}
+	
+	@Override
 	public Iterable<Tmio1Bus> findAllBuses() {
 		return busRepos.findAll();
 	}
 
+	@Override
 	public Iterable<Tmio1Conductore> findAllDrivers() {
 		return driverRepos.findAll();
 	}
 
+	@Override
 	public Iterable<Tmio1Ruta> findAllRoutes() {
 		return routeRepos.findAll();
 	}
+	@Override
 	public Iterable<Tmio1Servicio> findAllServices() {
 		return serviceRepository.findAll();
 	}
 
+	@Override
 	public Optional<Tmio1Bus> findByBusId(Integer busId) {
 		return busRepos.findById(busId);
 	}
 
+	@Override
 	public Optional<Tmio1Conductore> findByDriverId(String driverId) {
 		return driverRepos.findById(driverId);
 	}
 
+	@Override
 	public Optional<Tmio1Ruta> findByRouteId(Integer routeId) {
 		return routeRepos.findById(routeId);
 	}
 	
+	@Override
 	public Optional<Tmio1ServicioPK> findPKId(String id) {
 		Iterable<Tmio1Servicio> iterable= serviceRepository.findAll();
 		Iterator<Tmio1Servicio> i= iterable.iterator();
@@ -105,6 +117,7 @@ public class ServiceService implements ServiceServiceIn{
 		}
 		return null;
 	}
+	@Override
 	public Iterable<Tmio1Servicio> filtrar(LocalDate fechaInicio) {
 		Iterable<Tmio1Servicio> filt= this.findAllServices();
 	    int contador = 0;
