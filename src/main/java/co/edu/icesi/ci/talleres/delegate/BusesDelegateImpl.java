@@ -24,6 +24,7 @@ public class BusesDelegateImpl implements BusesDelegate{
 	@Override
 	public Tmio1Bus saveBus(Tmio1Bus bus) {
 		Tmio1Bus newBus= restTemplate.postForEntity(SERVER+"buses", bus, Tmio1Bus.class).getBody();
+		System.out.println("retorna el bus");
 		return newBus;
 	}
 

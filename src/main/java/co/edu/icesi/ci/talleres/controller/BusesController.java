@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import co.edu.icesi.ci.talleres.delegate.BusesDelegateImpl;
+import co.edu.icesi.ci.talleres.model.BusType;
 import co.edu.icesi.ci.talleres.model.Tmio1Bus;
 
 
@@ -34,7 +35,7 @@ public class BusesController {
 	@GetMapping("/buses/add1")
 	public String addBus1(Model model) {
 		model.addAttribute("tmio1Bus", new Tmio1Bus());
-		model.addAttribute("types", busesDelegate.getTypes());
+		model.addAttribute("types", BusType.values());
 		return "buses/add-buses2";
 	}
 	
@@ -43,10 +44,11 @@ public class BusesController {
 			@RequestParam(value = "action", required = true) String action, Model model) {
 		if (!action.equals("Cancel"))
 			if (bindingResult.hasErrors()) {
-				model.addAttribute("types", busesDelegate.getTypes());
+				model.addAttribute("types", BusType.values());
 				return "buses/add-buses2";
 			} else {
 				try {
+					System.out.println("alcanza a entrar");
 					busesDelegate.saveBus(tmio1Bus);
 				} catch (Exception e) {
 					model.addAttribute("error", new Error(e.getMessage()));
