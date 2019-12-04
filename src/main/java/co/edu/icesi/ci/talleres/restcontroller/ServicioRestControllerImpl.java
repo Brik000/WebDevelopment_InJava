@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.edu.icesi.ci.talleres.model.Tmio1Bus;
@@ -23,7 +24,7 @@ public class ServicioRestControllerImpl implements ServiceRestController {
 
 	@Override
 	@PostMapping("api/servicios")
-	public Tmio1ServicioPK saveService(Tmio1ServicioPK serice) {
+	public Tmio1ServicioPK saveService(@RequestBody Tmio1ServicioPK serice) {
 		// TODO Auto-generated method stub
 		servicio.saveService(serice);
 		return serice;
