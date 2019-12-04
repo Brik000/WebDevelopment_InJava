@@ -8,13 +8,12 @@ import org.springframework.stereotype.Service;
 
 import co.edu.icesi.ci.talleres.model.BusType;
 import co.edu.icesi.ci.talleres.model.Tmio1Bus;
-import co.edu.icesi.ci.talleres.model.UserApp;
-import co.edu.icesi.ci.talleres.model.UserType;
 import co.edu.icesi.ci.talleres.repositories.BusesRepository;
 
 @Service
 public class BusService implements BusServiceIn{
 	private BusesRepository busRepository;
+	
 	@Autowired
 	public BusService(BusesRepository busRepository) {
 		this.busRepository = busRepository;

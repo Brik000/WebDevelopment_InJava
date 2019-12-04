@@ -45,7 +45,9 @@
 				<form action=# th:action="@{/conductores/add1}" method="post" th:object="${driver}">
 					<div class="row">
 						<div class="form-group col-md-6">
-							<label for="id">Cedula</label><input type="text" id="id" th:field="*{cedula}"  class="form-control">
+							<label for="id">Cedula</label><input
+								type="text" min="1" th:field="*{cedula}" class="form-control"
+								id="cedula">
 							<span th:if="${#fields.hasErrors('cedula')}" th:errors="*{cedula}" class="text-danger"></span>
 								</div>
 								<div class="form-group col-md-6">

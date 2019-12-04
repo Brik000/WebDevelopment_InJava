@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.edu.icesi.ci.talleres.model.Tmio1Bus;
@@ -21,7 +22,8 @@ public class ConductorRestControllerImpl implements ConductorRestController{
 	
 	@Override
 	@PostMapping("api/conductores")
-	public Tmio1Conductore saveConductor(Tmio1Conductore conductor) {
+	public Tmio1Conductore saveConductor(@RequestBody Tmio1Conductore conductor) {
+		System.out.println(conductor.getCedula());
 		service.saveConductor(conductor);
 		return conductor;
 	}

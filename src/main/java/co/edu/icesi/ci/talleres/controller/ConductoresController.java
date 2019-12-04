@@ -48,7 +48,7 @@ public class ConductoresController {
 					conductorDelegate.saveConductor(driver);
 				} catch (Exception e) {
 					model.addAttribute("error", new Error(e.getMessage()));
-					return "redirect:/error/"; 
+					return "redirect:/conductores/"; 
 				}
 			}
 		}

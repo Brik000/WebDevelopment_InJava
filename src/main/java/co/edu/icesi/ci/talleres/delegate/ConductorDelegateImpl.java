@@ -24,7 +24,9 @@ public class ConductorDelegateImpl implements ConductorDelegate {
 
 	@Override
 	public Tmio1Conductore saveConductor(Tmio1Conductore conductor) {
+		System.out.println(conductor.getCedula());
 		Tmio1Conductore newConductor= restTemplate.postForEntity(SERVER+"conductores", conductor, Tmio1Conductore.class).getBody();
+		System.out.println(newConductor.getCedula());
 		return newConductor;
 	}
 
