@@ -39,6 +39,8 @@
 								<td class="text-info" th:text="${#temporals.format( conductor.fechaContratacion, 'dd/MM/yyyy')}"></td>
 								<td class="text-info" th:text="${#temporals.format(conductor.fechaNacimiento, 'dd/MM/yyyy')}"></td>
 								<td class="text-info" th:text="${conductor.nombre}"></td>
+								<td><a th:href="@{/conductores/del/{cedula}(cedula=${conductor.cedula})}"
+									class="btn btn-primary"><i class="fas fa-times"></i></a></td>
 							</tr>
 						</tbody>
 					</table>

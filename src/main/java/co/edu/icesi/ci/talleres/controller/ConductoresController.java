@@ -8,10 +8,12 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import co.edu.icesi.ci.talleres.delegate.ConductorDelegateImpl;
+import co.edu.icesi.ci.talleres.model.Tmio1Bus;
 import co.edu.icesi.ci.talleres.model.Tmio1Conductore;
 
 
@@ -52,6 +54,13 @@ public class ConductoresController {
 				}
 			}
 		}
+		return "redirect:/conductores/";
+	}
+	
+	@GetMapping("/conductores/del/{cedula}")
+	public String borrarConductor(@PathVariable("cedula") String cedula) throws Exception {
+		Tmio1Conductore conductor = conductorDelegate.findByCedula(cedula);
+		conductorDelegate.delete(conductor);
 		return "redirect:/conductores/";
 	}
 	
