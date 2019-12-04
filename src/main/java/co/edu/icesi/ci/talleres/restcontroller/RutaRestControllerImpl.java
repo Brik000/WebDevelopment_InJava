@@ -38,8 +38,10 @@ public class RutaRestControllerImpl implements RutaRestController {
 
 	@Override
 	@GetMapping("api/rutas/{id}")
-	public Tmio1Ruta findById(int id) throws Exception{
-		return service.findById(id).get();
+	public Optional<Tmio1Ruta> findById(int id) throws Exception {
+		// TODO Auto-generated method stub
+		System.out.println("ENTROOOOOOOOO");
+		return service.findById(id);
 	}
 
 	@Override

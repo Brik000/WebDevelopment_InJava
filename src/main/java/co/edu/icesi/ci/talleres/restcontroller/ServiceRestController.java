@@ -3,8 +3,6 @@ package co.edu.icesi.ci.talleres.restcontroller;
 import java.time.LocalDate;
 import java.util.Optional;
 
-import org.springframework.web.bind.annotation.RequestBody;
-
 import co.edu.icesi.ci.talleres.model.Tmio1Bus;
 import co.edu.icesi.ci.talleres.model.Tmio1Conductore;
 import co.edu.icesi.ci.talleres.model.Tmio1Ruta;
@@ -26,7 +24,5 @@ public interface ServiceRestController {
 	public Optional<Tmio1Ruta> findByRouteId(Integer routeId);
 	public Optional<Tmio1ServicioPK> findPKId(String id);
 	public Iterable<Tmio1Servicio> filtrar(LocalDate fechaInicio);
-	public Tmio1Servicio updateServicio(@RequestBody Tmio1Servicio nuevoServ) ;
-
 
 }

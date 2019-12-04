@@ -47,17 +47,6 @@ public class ServiceDelegateImpl implements ServiceDelegate{
 		Tmio1Servicio newServicio2= restTemplate.postForEntity(SERVER+"servicios2", service, Tmio1Servicio.class).getBody();
 		return newServicio2;
 	}
-	
-	@Override
-	public String editService(Tmio1Servicio nuevo) {
-		
-		Tmio1Servicio service= restTemplate.patchForObject(SERVER+"servicios", nuevo, Tmio1Servicio.class);
-		return "Guardado";
-	}
-	
-	public void delete(String hash) {
-		restTemplate.delete(SERVER + "service/" + hash);
-	}
 
 	@Override
 	public Iterable<Tmio1Bus> findAllBuses() {
@@ -146,11 +135,6 @@ public class ServiceDelegateImpl implements ServiceDelegate{
 			e.printStackTrace();
 		}
 		return null;
-	}
-	
-	public Tmio1Servicio findByHash(String tempHash) {
-			Tmio1Servicio nuevoServicio= restTemplate.getForObject(SERVER+"service/", Tmio1Servicio.class);
-		return nuevoServicio;
 	}
 
 }

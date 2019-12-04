@@ -2,8 +2,6 @@ package co.edu.icesi.ci.talleres.services;
 
 import java.util.List;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +11,6 @@ import co.edu.icesi.ci.talleres.model.Tmio1Sitio;
 import co.edu.icesi.ci.talleres.model.Tmio1SitiosRuta;
 
 @Service
-@Transactional
 public class SitiorutaService {
 	@Autowired
 	private SitioRutaDao sitioDao;

@@ -23,7 +23,5 @@ public interface ServiceDelegate {
 	public Tmio1Ruta findByRouteId(Integer routeId);
 	public Tmio1ServicioPK findPKId(String id);
 	public Iterable<Tmio1Servicio> filtrar(LocalDate fechaInicio);
-	public String editService(Tmio1Servicio nuevo);
-	public void delete(String hash);
 	
 }

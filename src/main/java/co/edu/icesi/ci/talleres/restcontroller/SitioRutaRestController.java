@@ -11,22 +11,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import co.edu.icesi.ci.talleres.model.Tmio1Ruta;
 import co.edu.icesi.ci.talleres.model.Tmio1Sitio;
 import co.edu.icesi.ci.talleres.model.Tmio1SitiosRuta;
-import co.edu.icesi.ci.talleres.services.RutaService;
 import co.edu.icesi.ci.talleres.services.SitioService;
 import co.edu.icesi.ci.talleres.services.SitiorutaService;
 
 @RestController
 public class SitioRutaRestController {
 SitiorutaService sitioService;
-RutaService rutaService;
 	
 	@Autowired
-	public SitioRutaRestController(SitiorutaService sitioService,RutaService rutaService) {
+	public SitioRutaRestController(SitiorutaService sitioService) {
 		this.sitioService= sitioService;
-		this.rutaService=rutaService;
 	}
 	@GetMapping("api/sitioruta/all")
 	public List<Tmio1SitiosRuta> findAll() {
@@ -38,13 +34,8 @@ RutaService rutaService;
 		
 		return sitioService.findById(id);
 	}
-	@GetMapping("api/sitioruta/buscar/{id}")
-	public Tmio1Ruta findRutaById(@PathVariable("id")int id) throws Exception {
-		return rutaService.findById(id).get();
-	}
 	@PostMapping("api/sitioruta")
 	public Tmio1SitiosRuta saveSitio(@RequestBody Tmio1SitiosRuta sitio) {
-		System.out.println(sitio.getId().getIdSitio());
 		sitioService.saveSitio(sitio);
 		return sitio;
 	}

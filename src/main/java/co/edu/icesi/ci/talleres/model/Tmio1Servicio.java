@@ -18,9 +18,6 @@ public class Tmio1Servicio implements Serializable {
 
 	@EmbeddedId
 	private Tmio1ServicioPK id;
-	
-	private String hash;
-
 
 	//bi-directional many-to-one association to Tmio1Bus
 	@ManyToOne
@@ -53,14 +50,6 @@ public class Tmio1Servicio implements Serializable {
 
 	public Tmio1Bus getTmio1Bus() {
 		return this.tmio1Bus;
-	}
-	
-	public String getHash() {
-		return hash;
-	}
-
-	public void setHash(String hash) {
-		this.hash = hash;
 	}
 
 	public void setTmio1Bus(Tmio1Bus tmio1Bus) {
