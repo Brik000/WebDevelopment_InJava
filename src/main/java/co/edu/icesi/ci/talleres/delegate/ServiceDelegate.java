@@ -1,6 +1,7 @@
 package co.edu.icesi.ci.talleres.delegate;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 import co.edu.icesi.ci.talleres.model.Tmio1Bus;
 import co.edu.icesi.ci.talleres.model.Tmio1Conductore;
@@ -21,7 +22,7 @@ public interface ServiceDelegate {
 	public Tmio1Bus findByBusId(Integer busId);
 	public Tmio1Conductore findByDriverId(String driverId);
 	public Tmio1Ruta findByRouteId(Integer routeId);
-	public Tmio1ServicioPK findPKId(String id);
+	public Optional<Tmio1ServicioPK> findPKId(String id);
 	public Iterable<Tmio1Servicio> filtrar(LocalDate fechaInicio);
 	
 }

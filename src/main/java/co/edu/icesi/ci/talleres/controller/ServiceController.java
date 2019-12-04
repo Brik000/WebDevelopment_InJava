@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import co.edu.icesi.ci.talleres.delegate.ServiceDelegateImpl;
 import co.edu.icesi.ci.talleres.model.Tmio1Servicio;
 import co.edu.icesi.ci.talleres.model.Tmio1ServicioPK;
 import co.edu.icesi.ci.talleres.services.ServiceService;
@@ -24,10 +25,11 @@ import co.edu.icesi.ci.talleres.services.ServiceService;
 
 @Controller
 public class ServiceController{
-	ServiceService service;
+	
+	ServiceDelegateImpl service;
 
 	@Autowired
-	public ServiceController(ServiceService service) {
+	public ServiceController(ServiceDelegateImpl service) {
 		this.service= service;
 		;
 	}
