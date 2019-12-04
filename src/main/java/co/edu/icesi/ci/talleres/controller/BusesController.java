@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -57,4 +58,24 @@ public class BusesController {
 			}
 		return "redirect:/buses/";
 	}
+	
+	@GetMapping("/buses/del/{id}")
+	public String borrarBus(@PathVariable("id") Integer id) throws Exception {
+		Tmio1Bus bus = busesDelegate.findById(id);
+		busesDelegate.delete(bus);;
+		return "redirect:/buses/";
+	}
+	
+	@PostMapping("/buses/search/")
+	public String searchBus(Tmio1Bus bus, Model modelo) {
+		try {
+			Tmio1Bus bus1 = busesDelegate.findById(bus.getId());
+			modelo.addAttribute("buses", bus1);
+		} catch (Exception s) {
+			modelo.addAttribute("buses", busesDelegate.findAll());
+		}
+		modelo.addAttribute("busSearched", new Tmio1Bus());
+		return "buses/index";
+	}
+	
 }

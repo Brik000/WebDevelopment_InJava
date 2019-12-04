@@ -42,12 +42,12 @@ public class Tmio1Bus implements Serializable {
 	private BusType tipo;
 
 	//bi-directional many-to-one association to Tmio1Servicio
-	@OneToMany(mappedBy="tmio1Bus")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="tmio1Bus")
 	@JsonIgnore
 	private List<Tmio1Servicio> tmio1Servicios;
 
 	//bi-directional many-to-one association to Tmio1ServiciosSitio
-	@OneToMany(mappedBy="tmio1Bus")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="tmio1Bus")
 	@JsonIgnore
 	private List<Tmio1ServiciosSitio> tmio1ServiciosSitios;
 

@@ -30,6 +30,7 @@
 								<th>Marca</th>
 								<th>Placa</th>
 								<th>Tipo</th>
+								
 							</tr>
 						</thead>
 						<tbody>
@@ -40,6 +41,8 @@
 								<td class="text-info" th:text="${bus.modelo}"></td>
 								<td class="text-info" th:text="${bus.placa}"></td>
 								<td class="text-info" th:text="${bus.tipo}"></td>
+								<td><a th:href="@{/buses/del/{id}(id=${bus.id})}"
+									class="btn btn-primary"><i class="fas fa-times"></i></a></td>
 							</tr>
 						</tbody>
 					</table>
@@ -48,8 +51,9 @@
 						<a href="/buses/add1" class="btn btn-primary"><i
 							class="fas fa-user-plus ml-2"></i></a>
 					</p>
-			</div>
+			</div>	
 		</div>
+		
 		<a href="/"><i class="fas fa-home ml-2"></i> Go back to main</a>
 	</div>
 </body>
