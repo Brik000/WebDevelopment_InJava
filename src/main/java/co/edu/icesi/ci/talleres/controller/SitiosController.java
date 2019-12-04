@@ -53,12 +53,15 @@ public class SitiosController {
 		sitioDelegate.removeSitio(id);
 		return "redirect:/sitio/";
 	}
-	@PostMapping("/Sitio/edit/")
-	public String editSitio(@Valid @ModelAttribute("sitio") Tmio1Sitio sitio, BindingResult bindingResult, Model model) {
+	@PostMapping("/Sitio/edit-sitio/{id}")
+	public String editSitio(@PathVariable("id") String id,@Valid @ModelAttribute("sitio") Tmio1Sitio sitio, BindingResult bindingResult, Model model) {
 		if(bindingResult.hasErrors()) {
 			model.addAttribute("sitio",sitio);
 			return "/Sitio/edit-sitio";
 		}
+		sitio.setId(Long.parseLong(id));
+		sitioDelegate.removeSitio(id);
+		sitioDelegate.saveSitio(sitio);
 		System.out.println(sitio.getId());
 		sitioDelegate.updateSitio(sitio);
 		return "redirect:/Sitio/";

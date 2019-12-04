@@ -38,7 +38,7 @@ public class SitioDelegate {
 		return newBus;	
 	}
 	public void removeSitio(String id) {
-		restTemplate.delete(SERVER+"sitio/"+id);	
+		restTemplate.delete(SERVER+"sitio/delete/"+id);	
 	}
 	
 	public String updateSitio(Tmio1Sitio nuevo) {
