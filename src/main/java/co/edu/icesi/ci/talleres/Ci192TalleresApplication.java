@@ -13,12 +13,17 @@ import co.edu.icesi.ci.talleres.dao.BusDao;
 import co.edu.icesi.ci.talleres.dao.ConductorDao;
 import co.edu.icesi.ci.talleres.dao.RutaDao;
 import co.edu.icesi.ci.talleres.dao.ServicioDao;
+import co.edu.icesi.ci.talleres.dao.SitioDao;
+import co.edu.icesi.ci.talleres.dao.SitioRutaDao;
 import co.edu.icesi.ci.talleres.model.BusType;
 import co.edu.icesi.ci.talleres.model.Tmio1Bus;
 import co.edu.icesi.ci.talleres.model.Tmio1Conductore;
 import co.edu.icesi.ci.talleres.model.Tmio1Ruta;
 import co.edu.icesi.ci.talleres.model.Tmio1Servicio;
 import co.edu.icesi.ci.talleres.model.Tmio1ServicioPK;
+import co.edu.icesi.ci.talleres.model.Tmio1Sitio;
+import co.edu.icesi.ci.talleres.model.Tmio1SitiosRuta;
+import co.edu.icesi.ci.talleres.model.Tmio1SitiosRutaPK;
 import co.edu.icesi.ci.talleres.model.UserApp;
 import co.edu.icesi.ci.talleres.model.UserType;
 import co.edu.icesi.ci.talleres.repositories.BusesRepository;
@@ -42,7 +47,7 @@ public class Ci192TalleresApplication {
 
 	
 	@Bean
-	public CommandLineRunner demo(UserRepository userRepository,BusDao busRepository, RutaDao rutaRepository, ConductorDao conductoresRepository, ServicioDao serviceRepository) {
+	public CommandLineRunner demo(UserRepository userRepository,BusDao busRepository, RutaDao rutaRepository, ConductorDao conductoresRepository, ServicioDao serviceRepository, SitioDao sitioRepo,SitioRutaDao sitioRutaRepo) {
 		return (args) -> {
 			UserApp user = new UserApp();			
 			user.setUsername("admin");
@@ -110,6 +115,21 @@ public class Ci192TalleresApplication {
 			
 			s2.setId(aux2);
 			serviceRepository.save(s2);
+			
+//			Tmio1Sitio sitio= new Tmio1Sitio();
+//			sitio.setDescripcion("Hola");
+//			sitio.setId(1);
+//			sitio.setNombre("Juan");
+//			sitioRepo.save(sitio);
+//			
+//			Tmio1SitiosRuta sitioRuta= new Tmio1SitiosRuta();
+//			sitioRuta.setHash((int) sitio.getId());
+//			Tmio1SitiosRutaPK pk= new Tmio1SitiosRutaPK();
+//			pk.setIdRuta(1);
+//			pk.setIdSitio(1);
+//			sitioRuta.setId(pk);
+//			sitioRutaRepo.save(sitioRuta);
+			
 			
 			};
 		}

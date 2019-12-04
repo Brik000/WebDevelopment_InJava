@@ -51,14 +51,14 @@ public class BusDelegateTest {
 		Tmio1Bus bus2 = new Tmio1Bus();
 		
 		bus1.setCapacidad(BigDecimal.valueOf(10.0));
-		bus1.setMarca("chevrolet");
-		bus1.setPlaca("ADX412");
+		bus1.setMarca("volvo");
+		bus1.setPlaca("hzv123");
 		bus1.setModelo(BigDecimal.valueOf(2019));
 		bus1.setId(123);
 		
 		bus2.setCapacidad(BigDecimal.valueOf(20.0));
-		bus2.setMarca("chevrolet");
-		bus2.setPlaca("ADX413");
+		bus2.setMarca("mercedez");
+		bus2.setPlaca("kds863");
 		bus2.setModelo(BigDecimal.valueOf(2019));
 		bus2.setId(456);
 

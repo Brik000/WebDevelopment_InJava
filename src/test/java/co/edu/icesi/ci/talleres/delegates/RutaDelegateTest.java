@@ -18,8 +18,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 import org.testng.annotations.BeforeMethod;
 
-import co.edu.icesi.ci.talleres.delegate.BusDelegateImp;
-import co.edu.icesi.ci.talleres.delegate.RutaDelegateImp;
+
+import co.edu.icesi.ci.talleres.delegate.RutasDelegateImpl;
 import co.edu.icesi.ci.talleres.model.Tmio1Bus;
 import co.edu.icesi.ci.talleres.model.Tmio1Ruta;
 
@@ -33,7 +33,7 @@ public class RutaDelegateTest {
 
 	@InjectMocks
 	@Autowired
-	private RutaDelegateImp busDelegate;
+	private RutasDelegateImpl rutaDelegate;
 	
 	final String URI_SERVER = "http://localhost:8080/api/";
 	
@@ -44,56 +44,61 @@ public class RutaDelegateTest {
 	
 	@Test
 	public void MostrarBusTest() {
-		Tmio1Ruta bus1 = new Tmio1Ruta();
-		Tmio1Ruta bus2 = new Tmio1Ruta();
+		Tmio1Ruta ruta1 = new Tmio1Ruta();
+		Tmio1Ruta ruta2 = new Tmio1Ruta();
 		
-		bus1.setId(123);
-		bus1.setNumero("1221");
-		bus1.setDiaInicio(new BigDecimal("123"));
-		bus1.setDiaFin(new BigDecimal("223"));
-		bus1.setHoraInicio(new BigDecimal("20"));
-		bus1.setHoraFin(new BigDecimal("30"));
+		ruta1.setId(1);
+		ruta1.setNumero("1221");
+		ruta1.setDiaInicio(new BigDecimal("123"));
+		ruta1.setDiaFin(new BigDecimal("223"));
+		ruta1.setHoraInicio(new BigDecimal("20"));
+		ruta1.setHoraFin(new BigDecimal("30"));
 		
-		bus2.setId(323);
-		bus2.setNumero("4621");
-		bus2.setDiaInicio(new BigDecimal("223"));
-		bus2.setDiaFin(new BigDecimal("423"));
-		bus2.setHoraInicio(new BigDecimal("21"));
-		bus2.setHoraFin(new BigDecimal("31"));
+		ruta2.setId(2);
+		ruta2.setNumero("4621");
+		ruta2.setDiaInicio(new BigDecimal("223"));
+		ruta2.setDiaFin(new BigDecimal("423"));
+		ruta2.setHoraInicio(new BigDecimal("21"));
+		ruta2.setHoraFin(new BigDecimal("31"));
 		
 		//Yo le doy comportamiento a los metodos del RestTemplate
-		Tmio1Ruta[] buses = {bus1, bus2};
+		Tmio1Ruta[] buses = {ruta1, ruta2};
 		
 	Mockito
     .when(restTemplate.getForObject(URI_SERVER + "rutas", Tmio1Ruta[].class))
     .thenReturn(buses);
 
-	Iterable<Tmio1Ruta> employee = busDelegate.getRutas();
+	Iterable<Tmio1Ruta> employee = rutaDelegate.findAll();
     
-	assertEquals(bus1.getId(), employee.iterator().next().getId());
+	assertEquals(ruta1.getId(), employee.iterator().next().getId());
 
 	}
 	
 	@Test
 	public void AgregarBusTest() {
 		
-		Tmio1Ruta bus1 = new Tmio1Ruta();
+		Tmio1Ruta ruta1 = new Tmio1Ruta();
 		
-		bus1.setId(123);
-		bus1.setNumero("1221");
-		bus1.setDiaInicio(new BigDecimal("123"));
-		bus1.setDiaFin(new BigDecimal("223"));
-		bus1.setHoraInicio(new BigDecimal("20"));
-		bus1.setHoraFin(new BigDecimal("30"));
+		ruta1.setId(123);
+		ruta1.setNumero("1221");
+		ruta1.setDiaInicio(new BigDecimal("123"));
+		ruta1.setDiaFin(new BigDecimal("223"));
+		ruta1.setHoraInicio(new BigDecimal("20"));
+		ruta1.setHoraFin(new BigDecimal("30"));
 		
-		Mockito.when(restTemplate.postForEntity(URI_SERVER + "rutas", bus1, Tmio1Ruta.class)).thenReturn(new ResponseEntity<Tmio1Ruta>(bus1, HttpStatus.OK));
 	
-		Mockito.when(restTemplate.getForObject(URI_SERVER + "rutas/"+bus1.getId(), Tmio1Ruta.class)).thenReturn(bus1);
+		Mockito.when(restTemplate.getForObject(URI_SERVER + "rutas/"+ruta1.getId(), Tmio1Ruta.class)).thenReturn(ruta1);
 
 	
-	Tmio1Ruta employee = busDelegate.getRuta(bus1.getId());
+	Tmio1Ruta employee;
+	try {
+		employee = rutaDelegate.findById(ruta1.getId());
+		assertEquals(ruta1.getId(), employee.getId());
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
     
-	assertEquals(bus1.getId(), employee.getId());
 
 	}
 	
