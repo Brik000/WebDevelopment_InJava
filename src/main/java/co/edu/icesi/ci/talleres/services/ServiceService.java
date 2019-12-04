@@ -142,4 +142,30 @@ public class ServiceService implements ServiceServiceIn{
 		Iterable<Tmio1Servicio> nuevo= Arrays.asList(lista);
 		return nuevo;
 	}
+	
+	
+	public void delete(Tmio1Servicio servicio) {
+		// TODO Auto-generated method stub
+		serviceRepository.delete(servicio);
+		
+	}
+	
+	
+	public Tmio1Servicio findByHash(String hash) {
+		// TODO Auto-generated method stub
+		Tmio1Servicio respuesta = null;
+		
+		Iterable<Tmio1Servicio> todos = findAllServices();
+
+		for (Tmio1Servicio s : todos) {	
+			if(s.getHash().equals(hash)){
+				respuesta = s;
+				break;
+			}
+		}
+		
+		
+		return respuesta;
+	}
+	
 }

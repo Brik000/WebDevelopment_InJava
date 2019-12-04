@@ -2,6 +2,7 @@ package co.edu.icesi.ci.talleres.model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.UUID;
 
 import javax.persistence.*;
 
@@ -15,6 +16,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class Tmio1ServicioPK implements Serializable {
 	//default serial version id, required for serializable classes.
 	private static final long serialVersionUID = 1L;
+
+	private String hashId = UUID.randomUUID().toString().substring(0, 8);
 
 	@Column(name="id_ruta", insertable=false, updatable=false)
 	private Integer idRuta;
@@ -80,6 +83,14 @@ public class Tmio1ServicioPK implements Serializable {
 			&& this.idBus.equals(castOther.idBus)
 			&& this.fechaInicio.equals(castOther.fechaInicio)
 			&& this.fechaFin.equals(castOther.fechaFin);
+	}
+	
+	public String getHashId() {
+		return hashId;
+	}
+
+	public void setHashId(String hash) {
+		this.hashId = hash;
 	}
 
 	public int hashCode() {

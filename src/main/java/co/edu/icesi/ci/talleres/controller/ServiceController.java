@@ -18,6 +18,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import co.edu.icesi.ci.talleres.delegate.ServiceDelegateImpl;
+import co.edu.icesi.ci.talleres.model.Tmio1Bus;
+import co.edu.icesi.ci.talleres.model.Tmio1Conductore;
+import co.edu.icesi.ci.talleres.model.Tmio1Ruta;
 import co.edu.icesi.ci.talleres.model.Tmio1Servicio;
 import co.edu.icesi.ci.talleres.model.Tmio1ServicioPK;
 import co.edu.icesi.ci.talleres.services.ServiceService;
@@ -34,7 +37,7 @@ public class ServiceController{
 		;
 	}
     
-	@GetMapping("/services/")
+	@GetMapping("services")
 	public String indexUser(Model model) {
 		model.addAttribute("services", service.findAllServices());
 		model.addAttribute("dateNew", LocalDate.now());
@@ -66,18 +69,36 @@ public class ServiceController{
 		return "redirect:/services/";
 	}
 	
+	private String tempHash = "";
+	@PostMapping("/service/edit/{id}")
+	public String saveUpdateService(@PathVariable("id") String hash, Tmio1ServicioPK nuevo, BindingResult bindingResult,
+			Model model) {
 
-	@GetMapping("/services/edit/{id}")
-	public String showUpdateForm(@PathVariable("id") String id, Model model) {
-		Optional<Tmio1ServicioPK> services = service.findPKId(id);
-		if (services == null)
-			throw new IllegalArgumentException("Invalid service Id:" + id);
-		model.addAttribute("service", services.get());
-		model.addAttribute("buses", service.findAllBuses());
-		model.addAttribute("routes",service.findAllRoutes());
-		model.addAttribute("drivers",service.findAllDrivers());
-		model.addAttribute("path",id);
-		return "services/edit-service2";
+		if (bindingResult.hasErrors()) {
+			model.addAttribute("buses", service.findAllBuses());
+			model.addAttribute("routes", service.findAllRoutes());
+			model.addAttribute("drivers", service.findAllDrivers());
+			tempHash = hash;
+			model.addAttribute("tempHash", tempHash);
+
+			return "/service/update-service";
+		}
+
+		Tmio1Bus bus = service.findByBusId(nuevo.getIdBus());
+		Tmio1Conductore driver = service.findByDriverId(nuevo.getCedulaConductor());
+		Tmio1Ruta route = service.findByRouteId(nuevo.getIdRuta());
+
+		Tmio1Servicio s = new Tmio1Servicio();
+		s.setId(nuevo);
+		s.setTmio1Bus(bus);
+		s.setTmio1Conductore(driver);
+		s.setTmio1Ruta(route);
+		s.setHash(s.getId().getHashId());
+
+		service.editService(s);
+		service.delete(tempHash);
+
+		return "redirect:/service/";
 	}
 
 	@GetMapping("/services/filtrar")

@@ -60,29 +60,31 @@ public class SitioRutaDelegate {
 	}
 
 	public Tmio1SitiosRuta getByID(String id) {
-		Tmio1SitiosRuta bus= restTemplate.getForObject(SERVER+"/sitioRuta"+id, Tmio1SitiosRuta.class);
+		Tmio1SitiosRuta bus= restTemplate.getForObject(SERVER+"/sitioruta"+id, Tmio1SitiosRuta.class);
 		return bus;
 	}
 
 	public Tmio1Ruta findRutaByID(Integer idRuta) {
-		System.out.println(SERVER+"rutas/"+idRuta+"+++++++++++++++++++++++++++++++");
-		Optional<Tmio1Ruta> ruta= restTemplate.getForObject(SERVER+"rutas/"+idRuta,  Optional.class);
-		System.out.println(ruta.get().getId()+"------------------------");
-		return ruta.get();
+		System.out.println(idRuta);
+		Tmio1Ruta ruta= restTemplate.getForObject(SERVER+"sitioruta/buscar/"+idRuta,  Tmio1Ruta.class);
+		System.out.println(ruta.getId());
+		return ruta;
 	}
 
 	public Tmio1Sitio findSitioByID(Integer idSitio) {
-		Optional<Tmio1Sitio> bus= restTemplate.getForObject(SERVER+"sitio/"+idSitio, Optional.class);
-		System.out.println(bus.get().getId()+"------------------------");
+		Tmio1Sitio sitio= restTemplate.getForObject(SERVER+"sitio/"+idSitio, Tmio1Sitio.class);
+		
 
-		return bus.get();
+		return sitio;
 	}
 	public Tmio1SitiosRuta findById(int id) {
 		Tmio1SitiosRuta bus= restTemplate.getForObject(SERVER+"sitioruta/"+id, Tmio1SitiosRuta.class);
 		return bus;
 	}
 	public String saveSitio(Tmio1SitiosRuta nuevo) {
-		Tmio1SitiosRuta sitioRuta = restTemplate.postForEntity(SERVER + "/sitioRuta", nuevo, Tmio1SitiosRuta.class).getBody();
+		System.out.println(nuevo.getId().getIdSitio()+"------------------------");
+		Tmio1SitiosRuta sitioRuta = restTemplate.postForEntity(SERVER + "sitioruta/", nuevo, Tmio1SitiosRuta.class).getBody();
+		
 		if (sitioRuta == null) {
 			return "Fallo";
 		}

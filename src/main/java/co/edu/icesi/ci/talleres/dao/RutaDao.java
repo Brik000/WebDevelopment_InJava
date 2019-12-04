@@ -85,7 +85,7 @@ public class RutaDao implements IRutaDao{
 
 	@Override
 	public List<Tmio1Ruta> findAll() {
-		String jpql = "Select a from Tmio1Conductore a";
+		String jpql = "Select a from Tmio1Ruta a";
 		return 	entityManager.createQuery(jpql).getResultList();
 	}
 
