@@ -23,7 +23,7 @@ public class SitioRutaDelegate {
 	public static String SERVER = "http://localhost:8080/api/";
 	
 	public List<Tmio1SitiosRuta> findAll() {
-		Tmio1SitiosRuta[] buses= restTemplate.getForObject(SERVER+"/sitioRuta", Tmio1SitiosRuta[].class);
+		Tmio1SitiosRuta[] buses= restTemplate.getForObject(SERVER+"sitioruta/all", Tmio1SitiosRuta[].class);
 		List<Tmio1SitiosRuta> at;
 		try {
 			at= Arrays.asList(buses);
@@ -35,7 +35,7 @@ public class SitioRutaDelegate {
 	}
 	
 	public List<Tmio1Ruta> getAllRoutes() {
-		Tmio1Ruta[] rutas= restTemplate.getForObject(SERVER+"/sitioRuta", Tmio1Ruta[].class);
+		Tmio1Ruta[] rutas= restTemplate.getForObject(SERVER+"/rutas", Tmio1Ruta[].class);
 		List<Tmio1Ruta> at;
 		try {
 			at= Arrays.asList(rutas);
@@ -47,10 +47,10 @@ public class SitioRutaDelegate {
 	}
 
 	public List<Tmio1Sitio> getAllSitio() {
-		Tmio1Sitio[] buses= restTemplate.getForObject(SERVER+"/sitioRuta", Tmio1Sitio[].class);
+		Tmio1Sitio[] sitios= restTemplate.getForObject(SERVER+"/sitio", Tmio1Sitio[].class);
 		List<Tmio1Sitio> at;
 		try {
-			at= Arrays.asList(buses);
+			at= Arrays.asList(sitios);
 			return at;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -64,16 +64,16 @@ public class SitioRutaDelegate {
 	}
 
 	public Tmio1Ruta findRutaByID(Integer idRuta) {
-		Tmio1Ruta ruta= restTemplate.getForObject(SERVER+"/sitioRuta"+idRuta, Tmio1Ruta.class);
+		Tmio1Ruta ruta= restTemplate.getForObject(SERVER+"rutas/"+idRuta, Tmio1Ruta.class);
 		return ruta;
 	}
 
 	public Tmio1Sitio findSitioByID(Integer idSitio) {
-		Tmio1Sitio bus= restTemplate.getForObject(SERVER+"/sitioRuta"+idSitio, Tmio1Sitio.class);
+		Tmio1Sitio bus= restTemplate.getForObject(SERVER+"sitio/"+idSitio, Tmio1Sitio.class);
 		return bus;
 	}
 	public Tmio1SitiosRuta findById(int id) {
-		Tmio1SitiosRuta bus= restTemplate.getForObject(SERVER+"sitioruta/"+id, Tmio1SitiosRuta.class);
+		Tmio1SitiosRuta bus= restTemplate.getForObject(SERVER+"/sitioruta/"+id, Tmio1SitiosRuta.class);
 		return bus;
 	}
 	public Tmio1SitiosRuta saveSitio(Tmio1SitiosRuta nuevo) {
